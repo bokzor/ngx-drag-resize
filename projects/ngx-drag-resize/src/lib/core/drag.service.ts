@@ -1,11 +1,11 @@
-import {Inject, Injectable} from '@angular/core';
-import {EMPTY, fromEvent, merge, Observable} from 'rxjs';
-import {DOCUMENT} from '@angular/common';
-import {map, switchMap, takeUntil, tap} from 'rxjs/operators';
-import {MovementNative} from './movement/movement-native';
-import {PositionBase} from './position-base';
-import {MovementBase} from './movement/movement-base';
-import {WINDOW} from './window.token';
+import { Inject, Injectable } from '@angular/core';
+import { EMPTY, fromEvent, merge, Observable } from 'rxjs';
+import { DOCUMENT } from '@angular/common';
+import { map, switchMap, takeUntil, tap } from 'rxjs/operators';
+import { MovementNative } from './movement/movement-native';
+import { PositionBase } from './position-base';
+import { MovementBase } from './movement/movement-base';
+import { WINDOW } from './window.token';
 
 /**
  * The service that allows to observe the element dragging
@@ -21,6 +21,13 @@ import {WINDOW} from './window.token';
   providedIn: 'root',
 })
 export class DragService {
+
+  constructor(
+    @Inject(DOCUMENT) private readonly document: Document,
+    @Inject(WINDOW) private readonly window: Window
+  ) {
+  }
+
   /**
    * Emits on mouse or touch event was ended
    */
@@ -36,11 +43,6 @@ export class DragService {
     fromEvent<MovementNative>(this.document, 'mousemove'),
     fromEvent<MovementNative>(this.document, 'touchmove')
   );
-
-  constructor(
-    @Inject(DOCUMENT) private readonly document: Document,
-    @Inject(WINDOW) private readonly window: Window
-  ) {}
 
   /**
    * Creates an observable that emits drag event

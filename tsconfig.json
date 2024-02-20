@@ -1,3 +1,4 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -5,6 +6,9 @@
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "resolveJsonModule": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": false,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
@@ -13,20 +17,27 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2015",
-    "module": "es2020",
-    "lib": [
-      "es2018",
-      "dom"
-    ],
+    "target": "ES2022",
+    "module": "ES2022",
+    "skipLibCheck": true,
+    "useDefineForClassFields": false,
+    "allowSyntheticDefaultImports": true,
+    "lib": ["ES2022", "dom"],
     "paths": {
-      "ngx-drag-resize": [
-        "dist/ngx-drag-resize/ngx-drag-resize",
-        "dist/ngx-drag-resize"
-      ]
+      "@shared/*": ["src/app/shared/*"],
+      "@config/*": ["src/app/core/config/*"],
+      "@core/*": ["src/app/core/*"],
+      "common": ["dist/common"],
+      "@freddy/common": ["dist/common"],
+      "@freddy/models": ["dist/models/"],
+      "@freddy/models/*": ["dist/models/*"],
+      "common/*": [
+        "dist/common/*"
+      ],
     }
   },
   "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
